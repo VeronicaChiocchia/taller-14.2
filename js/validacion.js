@@ -19,11 +19,12 @@ const password2 = document.getElementById("password2");
         }
 
         form.classList.add("was-validated");
-
+        let isValid = form.reportValidity();
+        console.log("¿Formulario válido?:", isValid);
         
         form.submit();
 
-        alert('Formulario enviado correctamente');
+        // alert('Formulario enviado correctamente');
       },
       false
     );
@@ -31,8 +32,8 @@ const password2 = document.getElementById("password2");
 })();
 
 function validatePasswords() {
-  const password1 = document.getElementById("password1");
-  const password2 = document.getElementById("password2");
+//   const password1 = document.getElementById("password1");
+//   const password2 = document.getElementById("password2");
 
   const password1ErrorMessage = document.getElementById(
     "password1-error-message"
@@ -41,42 +42,51 @@ function validatePasswords() {
     "password2-error-message"
   );
 
-//   const validityPass1 = password1.validity;
-//   const validityPass2 = password2.validity;
+  let validityPass1 = password1.validity;
+  let validityPass2 = password2.validity;
 
   password1.classList.remove("is-invalid", "is-valid");
   password2.classList.remove("is-invalid", "is-valid");
 
   // Validación de la contraseña 1
   if (password1.value === "") {
-    password1ErrorMessage.textContent = "Este campo no puede estar vacío";
+    // password2.setCustomValidity("Debes ingresar una contraseña de al menos 6 caracteres.");
+    // password1ErrorMessage.textContent = "Este campo no puede estar vacío";
     password1.classList.remove("is-valid");
     password1.classList.add("is-invalid");
+    // validityPass1 = false;
   } else {
-    password2.classList.remove("is-invalid");
+    password1.classList.remove("is-invalid");
     password1.classList.add("is-valid");
+    // validityPass1 = true;
   }
 
   // Validación de la contraseña 2 (repetir contraseña)
   if (password2.value === "") {
-    password2ErrorMessage.textContent =
-      "Este campo no puede estar vacío";
+    // password2ErrorMessage.textContent =
+    //   "Este campo no puede estar vacío";
+    // validityPass2 = false;
+    password2.classList.remove("is-valid");
+    password2.classList.add("is-invalid");
+    password2.setCustomValidity("");
+    // validityPass2 = false;
+    
+  } else if (password2.value !== password1.value) {
+    // password1ErrorMessage.textContent = "Las contraseñas no coinciden.";
+    // password2ErrorMessage.textContent = "Las contraseñas no coinciden.";
     password2.classList.remove("is-valid");
     password2.classList.add("is-invalid");
     password2.setCustomValidity("Las contraseñas no coinciden.");
-  } else if (password2.value !== password1.value) {
-    password1ErrorMessage.textContent = "Las contraseñas no coinciden.";
-    password2ErrorMessage.textContent = "Las contraseñas no coinciden.";
-    password2.classList.remove("is-valid");
-    password2.classList.add("is-invalid");
+    // validityPass2 = false;
   } else {
     password2.classList.remove("is-invalid");
     password2.classList.add("is-valid");
     password2.setCustomValidity("");
+    // validityPass2 = true;
   }
 
-//   console.log(validityPass1);
-//   console.log(validityPass2);
+  console.log(validityPass1);
+  console.log(validityPass2);
   password1.reportValidity();
   password2.reportValidity();
 }
