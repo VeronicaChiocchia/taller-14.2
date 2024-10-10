@@ -32,22 +32,27 @@
             <div class="col-12">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email">
-              <div class="valid-feedback">
-                Campo completado correctamente.
-              </div>
             </div>
 
             <div class="col-sm-6">
               <label for="password1" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password1">
+              <input type="password" class="form-control" id="password1" required>
               <div class="valid-feedback">
                 Campo completado correctamente.
+              </div>
+              <div class="invalid-feedback" id="password1-error-message">
+                no puede estar incompleto
               </div>
             </div>
 
             <div class="col-sm-6">
               <label for="password2" class="form-label">Repetir contraseña</label>
               <input type="password" class="form-control" id="password2">
+              <div class="valid-feedback">
+                Campo completado correctamente.
+              </div>
+              <div class="invalid-feedback" id="password2-error-message">
+              </div>
             </div>
 
             <div class="col-sm-12">
